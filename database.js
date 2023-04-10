@@ -4,14 +4,14 @@ dotenv.config();
 
 // Pool Object --> collection of objects
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+    host: process.env.db_host,
+    user: process.env.db_user,
+    password: process.env.db_password,
+    database: process.env.db_database,
 }).promise()
 
 export async function getCustomerTable() {
-    const [row] = await pool.query("SELECT name from customer")
+    const [row] = await pool.query("SELECT * from customer")
     return row;
 }
 
@@ -21,7 +21,7 @@ export async function getCustomer(custID) {
         `SELECT * from customer 
         where custID = ?` , [custID]
     )
-    return row[0];
+    return row;
 }
 
 export async function createCustomer(name, email, phoneNo, shippingAddress) {
@@ -30,4 +30,11 @@ export async function createCustomer(name, email, phoneNo, shippingAddress) {
     ` , [name, email, phoneNo, shippingAddress])
     const id = newCustomer.insertId;
     return getCustomer(id);
+}
+
+export async function deleteCustomer(custID) {
+    await pool.query(
+        `Delete from customer 
+        where custID = ?`, [custID]
+    )
 }

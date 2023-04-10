@@ -1,4 +1,5 @@
 use dbms_lab;
+
 create table customer (
   custID INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(40) NOT NULL,
@@ -6,6 +7,7 @@ create table customer (
   phoneNo VARCHAR(10) NOT NULL UNIQUE CHECK(LENGTH(phoneNo) = 10),
   shippingAddress VARCHAR(255) NOT NULL
 );
+
 insert into customer (name, email, phoneNo, shippingAddress)
 values (
     "Prayag Bhatt",
