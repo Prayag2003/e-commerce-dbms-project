@@ -5,10 +5,10 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get("/customers", async (req, res) => {
+app.get("/products", async (req, res) => {
     try {
-        const customers = await getCustomerTable();
-        res.send(customers);
+        const products = await getCustomerTable();
+        res.send(products);
     }
     catch (err) {
         res.status(404).send("Customer Not Found !");
@@ -16,10 +16,10 @@ app.get("/customers", async (req, res) => {
 })
 
 // Searching by ID
-app.get("/customer/:custID", async (req, res) => {
+app.get("/product/:PId", async (req, res) => {
     try {
-        const custID = req.params.custID;
-        const customer = await getCustomer(custID);
+        const PId = req.params.PId;
+        const customer = await getCustomer(PId);
         res.send(customer);
     }
     catch (err) {
@@ -28,22 +28,23 @@ app.get("/customer/:custID", async (req, res) => {
 })
 
 // Adding a new Customer
-app.post("/addCustomer", async (req, res) => {
-    try {
-        const { name, email, phoneNo, shippingAddress } = req.body;
-        const newCust = await createCustomer(name, email, phoneNo, shippingAddress);
-        res.status(201).send(newCust);
-    } catch (error) {
-        res.status(500).send("Internal Server Error ! ")
-    }
-})
+// app.post("/addProduct", async (req, res) => {
+//     try {
+//         const { name, email, phoneNo, shippingAddress } = req.body;
+//         const newCust = await createCustomer(name, email, phoneNo, shippingAddress);
+//         res.status(201).send(newCust);
+//     } catch (error) {
+//         res.status(500).send("Internal Server Error ! ")
+//     }
+// })
 
-app.delete("/deleteCustomer/:custID", async (req, res) => {
+app.delete("/deleteProduct/:PId", async (req, res) => {
     try {
-        const custID = req.params.custID;
-        const custName = req.params.name;
-        await deleteCustomer(custID);
-        res.status(200).send(`Deleted Customer having CustID = ${custID}`);
+        const PId = req.params.PId;
+        const quantity = req.params.Qty;
+        quantity--;
+        await deleteCustomer(PId);
+        res.status(200).send(`Deleted Customer having CustID = ${PId}`);
     }
     catch (e) {
         console.log(e);

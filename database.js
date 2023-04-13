@@ -15,33 +15,33 @@ mysql.createConnection({
 
 export async function getCustomerTable() {
     try {
-        const [row] = await pool.execute("SELECT * from customer")
+        const [row] = await pool.execute("SELECT * from products")
         return row;
     } catch (err) {
         console.log(err);
     }
 }
 
-export async function getCustomer(custID) {
+export async function getCustomer(PId) {
     const [row] = await pool.execute(
         // Passing the Prepared Statement
-        `SELECT * from customer 
-        where custID = ?` , [custID]
+        `SELECT * from products 
+        where PId = ?` , [PId]
     )
     return row;
 }
 
 export async function createCustomer(name, email, phoneNo, shippingAddress) {
 
-    const [newCustomer] = await pool.execute(`Insert into customer (name , email , phoneNo , shippingAddress ) values ( ? , ? , ? , ? ) 
+    const [newCustomer] = await pool.execute(`Insert into products (name , email , phoneNo , shippingAddress ) values ( ? , ? , ? , ? ) 
     ` , [name, email, phoneNo, shippingAddress])
     const id = newCustomer.insertId;
     return getCustomer(id);
 }
 
-export async function deleteCustomer(custID) {
+export async function deleteCustomer(PId) {
     await pool.execute(
-        `Delete from customer 
-        where custID = ?`, [custID]
+        `Delete from products 
+        where PId = ?`, [PId]
     )
 }
