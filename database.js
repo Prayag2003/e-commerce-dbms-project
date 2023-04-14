@@ -13,6 +13,7 @@ mysql.createConnection({
     pool = p;
 }).catch(err => console.error(err))
 
+
 export async function getCustomerTable() {
     try {
         const [row] = await pool.execute("SELECT * from products")
