@@ -28,21 +28,19 @@ app.get("/product/:PId", async (req, res) => {
 })
 
 // Adding a new Customer
-// app.post("/addProduct", async (req, res) => {
-//     try {
-//         const { name, email, phoneNo, shippingAddress } = req.body;
-//         const newCust = await createCustomer(name, email, phoneNo, shippingAddress);
-//         res.status(201).send(newCust);
-//     } catch (error) {
-//         res.status(500).send("Internal Server Error ! ")
-//     }
-// })
+app.post("/addProduct", async (req, res) => {
+    try {
+        const { name, email, phoneNo, shippingAddress } = req.body;
+        const newCust = await createCustomer(name, email, phoneNo, shippingAddress);
+        res.status(201).send(newCust);
+    } catch (error) {
+        res.status(500).send("Internal Server Error ! ")
+    }
+})
 
 app.delete("/deleteProduct/:PId", async (req, res) => {
     try {
         const PId = req.params.PId;
-        const quantity = req.params.Qty;
-        quantity--;
         await deleteCustomer(PId);
         res.status(200).send(`Deleted Customer having CustID = ${PId}`);
     }
