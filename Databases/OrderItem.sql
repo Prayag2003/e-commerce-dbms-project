@@ -1,4 +1,4 @@
-use dbms_project;
+use dbms;
 CREATE TABLE OrderItem
 (
     OrderItemID varchar(5) PRIMARY KEY,

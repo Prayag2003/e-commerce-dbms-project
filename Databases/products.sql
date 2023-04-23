@@ -1,4 +1,4 @@
-use dbms_project;
+use dbms;
 
 create table Products
 ( CID varchar(5) , PID varchar(5) Primary Key , Pname varchar(40) NOT NULL,

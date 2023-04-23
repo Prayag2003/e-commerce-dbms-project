@@ -1,9 +1,9 @@
-use dbms_project;
+use dbms;
 
 CREATE TABLE ProductCategory
 (
     CID varchar(5) PRIMARY KEY,
-    CName varchar(5)
+    CName varchar(15)
 );
 
 
