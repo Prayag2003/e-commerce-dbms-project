@@ -1,7 +1,6 @@
-use dbms_project;
+use dbms;
 
-
-create table SchemaName.UserTable
+create table User
 (
     UserID varchar(5) PRIMARY KEY,
     Name varchar(20),
