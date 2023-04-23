@@ -1,7 +1,7 @@
 import express from "express";
 import { getCustomer, getCustomerTable, createCustomer, deleteCustomer } from "./database.js"
 const app = express();
-const port = 5000;
+const port = 3000;
 
 app.use(express.json());
 
