@@ -1,11 +1,11 @@
 use dbms_project;
 
-create table products
-( Cid varchar(5) , PId varchar(5) Primary Key , Pname varchar(40) NOT NULL,
+create table Products
+( CID varchar(5) , PID varchar(5) Primary Key , Pname varchar(40) NOT NULL,
  Price int NOT NULL , Qty int NOT NULL,
- FOREIGN KEY (CId) REFERENCES product_category(CId) );
+ FOREIGN KEY (CID) REFERENCES ProductCategory(CID) );
  
- insert into products values
+ insert into Products values
  ( "C0001" , "P0001" , "Samsung F-23" , 30000 , 15 ),
  ( "C0001" , "P0002" , "Redmi Note 12" , 20000 ,  10 ),
  ( "C0001" , "P0003" , "OnePlus 11R " , 50000 , 9 ),

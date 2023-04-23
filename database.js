@@ -16,7 +16,7 @@ mysql.createConnection({
 
 export async function getCustomerTable() {
     try {
-        const [row] = await pool.execute("SELECT * from products")
+        const [row] = await pool.execute("SELECT * from Products")
         return row;
     } catch (err) {
         console.log(err);
@@ -26,7 +26,7 @@ export async function getCustomerTable() {
 export async function getCustomer(PId) {
     const [row] = await pool.execute(
         // Passing the Prepared Statement
-        `SELECT * from products 
+        `SELECT * from Products 
         where PId = ?` , [PId]
     )
     return row;
@@ -34,7 +34,7 @@ export async function getCustomer(PId) {
 
 export async function createCustomer(name, email, phoneNo, shippingAddress) {
 
-    const [newCustomer] = await pool.execute(`Insert into products (name , email , phoneNo , shippingAddress ) values ( ? , ? , ? , ? ) 
+    const [newCustomer] = await pool.execute(`Insert into Products (name , email , phoneNo , shippingAddress ) values ( ? , ? , ? , ? ) 
     ` , [name, email, phoneNo, shippingAddress])
     const id = newCustomer.insertId;
     return getCustomer(id);
@@ -42,7 +42,7 @@ export async function createCustomer(name, email, phoneNo, shippingAddress) {
 
 export async function deleteCustomer(PId) {
     await pool.execute(
-        `Delete from products 
+        `Delete from Products 
         where PId = ?`, [PId]
     )
 }
