@@ -1,7 +1,31 @@
 import express from "express";
 import { getProducts, getProduct, addProduct, deleteProduct, getCustomers, addCustomer } from "./database.js"
+
+// import swaggerUI from "swagger-ui-express";
+// import swaggerJsDoc from "swagger-jsdoc";
+// import YAML from 'yamljs';
+// const swaggerDocument = YAML.load('./swagger.yaml');
+
 const app = express();
 const port = 3000;
+
+// const swaggerOptions = {
+//     swaggerDefinition: {
+//         info: {
+//             title: 'My API',
+//             description: 'My API description',
+//             contact: {
+//                 name: 'John Doe'
+//             },
+//             servers: ['http://localhost:3000']
+//         }
+//     },
+//     apis: ['./app.js']
+// };
+
+// swaggerJsDoc(swaggerOptions);
+// app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
 
 app.use(express.json());
 

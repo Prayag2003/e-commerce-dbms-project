@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
+import { random } from "superheroes";
 dotenv.config();
 
 let connection;
@@ -69,8 +70,8 @@ export async function getCustomer(UserID) {
 
 export async function addCustomer(Name, Email, PhoneNumber, Password, Address) {
 
-    const [newCustomer] = await connection.execute(`Insert into User( Name , Email , PhoneNumber , Password , Address) values (?, ? , ? , ? , ? , ? ) 
-    ` , [Name, Email, PhoneNumber, Password, Address]);
-    
+    const UserID = Math.floor(Math.random() * 10000) + 1;
+    const [newCustomer] = await connection.execute(`Insert into User( UserID ,Name , Email , PhoneNumber , Password , Address) values (?, ? , ? , ? , ? , ? ) 
+    ` , [UserID, Name, Email, PhoneNumber, Password, Address]);
     return newCustomer;
 }

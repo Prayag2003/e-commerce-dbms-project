@@ -5,7 +5,7 @@
   "type": "module",
   "main": "database.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "nodemon app.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,9 @@
     "express": "^4.18.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.2.3",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2",
+    "yamljs": "^0.3.0"
   }
 }
