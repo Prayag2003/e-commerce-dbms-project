@@ -1,8 +1,6 @@
 use dbms;
-
-create table User
-(
-    UserID varchar(5) PRIMARY KEY,
+create table User (
+    UserID int auto_increment PRIMARY KEY,
     Name varchar(20),
     Email varchar(20),
     PhoneNumber varchar(30),
