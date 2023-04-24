@@ -1,7 +1,5 @@
 use dbms;
-
-CREATE TABLE Orders
-(
+CREATE TABLE Orders (
     OrderID varchar(5) PRIMARY KEY,
     UserID int,
     Foreign Key (UserID) references User(UserID),
