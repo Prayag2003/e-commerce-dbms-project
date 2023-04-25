@@ -1,5 +1,5 @@
 import express from "express";
-import { getProducts, getProduct, addProduct, deleteProduct, getCustomers, addCustomer } from "./database.js"
+import { getProducts, getProduct, addProduct, deleteProduct, getCustomers, addCustomer, buyProduct, updateProduct, getCartItems } from "./database.js"
 
 // import swaggerUI from "swagger-ui-express";
 // import swaggerJsDoc from "swagger-jsdoc";
@@ -65,6 +65,17 @@ app.post("/addProduct", async (req, res) => {
     }
 })
 
+app.patch("/updateProduct/:PID", async (req, res) => {
+    try {
+        const PID = req.params.PID;
+        const ModifiedProduct = await updateProduct(30, PID);
+        res.status(200).send(ModifiedProduct);
+    } catch (error) {
+        res.status(500).send(error)
+    }
+
+})
+
 app.delete("/deleteProduct/:PID", async (req, res) => {
     try {
         const PID = req.params.PID;
@@ -100,6 +111,29 @@ app.post("/addCustomer", async (req, res) => {
         res.status(201).send(newCust);
     } catch (err) {
         res.status(500).send("Internal Server Error ! ")
+    }
+})
+
+// <------------------------------- ON BUYING A PRODUCT ------------------------------->
+app.get("/buyProduct/:PID", async (req, res) => {
+    const PID = req.params.PID;
+    try {
+        const [updatedQuantity, updatedCart] = await buyProduct(1, PID);
+        res.status(201).send(updatedQuantity);
+    } catch (e) {
+        res.send(e);
+    }
+});
+
+
+// ----------------------------------- C A R T    T A B L E -------------------------------
+app.get("/getCartItems", async (req, res) => {
+    try {
+        const getCart = await getCartItems();
+        res.status(200).send(getCart);
+    }
+    catch (e) {
+        res.status(500).send("Error ");
     }
 })
 

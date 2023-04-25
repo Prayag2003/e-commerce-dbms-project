@@ -1,122 +1,138 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: "This is a sample API for a store"
-  version: "1.0.0"
-  title: "Store API"
-  contact:
-    email: "support@store.com"
-basePath: "/api"
+  version: 1.0.0
+  title: My Shopping API
+  description: A sample shopping API for learning purposes
+basePath: /api/v1
 schemes:
-  - "http"
+  - http
 consumes:
-  - "application/json"
+  - application/json
 produces:
-  - "application/json"
+  - application/json
+
 paths:
   /products:
     get:
-      summary: "Get all products"
-      description: "Returns a list of all products"
+      summary: Retrieve all products
+      description: Retrieves a list of all products
       responses:
         200:
-          description: "A list of products"
+          description: List of all products
           schema:
-            type: "array"
+            type: array
             items:
-              $ref: "#/definitions/Product"
-        404:
-          description: "Product Not Found"
-    post:
-      summary: "Add a new product"
-      description: "Adds a new product to the store"
-      parameters:
-        - in: "body"
-          name: "product"
-          description: "The product to add"
-          required: true
-          schema:
-            $ref: "#/definitions/Product"
-      responses:
-        201:
-          description: "The newly added product"
-          schema:
-            $ref: "#/definitions/Product"
-        500:
-          description: "Internal Server Error"
+              $ref: '#/definitions/Product'
+
   /product/{PID}:
     get:
-      summary: "Get a product by ID"
-      description: "Returns a product with the specified ID"
+      summary: Get a product by PID
+      description: Retrieves a product by its PID
       parameters:
-        - in: "path"
-          name: "PID"
-          description: "The ID of the product to retrieve"
+        - name: PID
+          in: path
+          description: ID of the product to retrieve
           required: true
-          type: "string"
+          type: integer
+          format: int32
       responses:
         200:
-          description: "The requested product"
+          description: The requested product
           schema:
-            $ref: "#/definitions/Product"
+            $ref: '#/definitions/Product'
         404:
-          description: "Product with specified ID not found"
+          description: Product not found
+
   /addProduct:
     post:
-      summary: "Add a new product"
-      description: "Adds a new product to the store"
+      summary: Add a new product
+      description: Adds a new product to the database
       parameters:
-        - in: "body"
-          name: "product"
-          description: "The product to add"
+        - name: body
+          in: body
+          description: The product object to add
           required: true
           schema:
-            $ref: "#/definitions/Product"
+            $ref: '#/definitions/NewProduct'
       responses:
         201:
-          description: "The newly added product"
+          description: The newly added product
           schema:
-            $ref: "#/definitions/Product"
+            $ref: '#/definitions/Product'
         500:
-          description: "Internal Server Error"
+          description: Internal server error
+
+  /updateProduct/{PID}:
+    patch:
+      summary: Update a product by PID
+      description: Updates a product by its PID
+      parameters:
+        - name: PID
+          in: path
+          description: ID of the product to update
+          required: true
+          type: integer
+          format: int32
+        - name: body
+          in: body
+          description: The new product object
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateProduct'
+      responses:
+        200:
+          description: The updated product
+          schema:
+            $ref: '#/definitions/Product'
+        500:
+          description: Internal server error
+
   /deleteProduct/{PID}:
     delete:
-      summary: "Delete a product by ID"
-      description: "Deletes a product with the specified ID"
+      summary: Delete a product by PID
+      description: Deletes a product by its PID
       parameters:
-        - in: "path"
-          name: "PID"
-          description: "The ID of the product to delete"
+        - name: PID
+          in: path
+          description: ID of the product to delete
           required: true
-          type: "string"
+          type: integer
+          format: int32
       responses:
         200:
-          description: "Product successfully deleted"
+          description: Product deleted successfully
         500:
-          description: "Internal Server Error"
+          description: Internal server error
+
   /getCustomers:
     get:
-      summary: "Get all customers"
-      description: "Returns a list of all customers"
+      summary: Retrieve all customers
+      description: Retrieves a list of all customers
       responses:
         200:
-          description: "A list of customers"
+          description: List of all customers
           schema:
-            type: "array"
+            type: array
             items:
-              $ref: "#/definitions/Customer"
-        404:
-          description: "Customers not found"
+              $ref: '#/definitions/Customer'
+
   /addCustomer:
     post:
-      summary: "Add a new customer"
-      description: "Adds a new customer to the store"
+      summary: Add a new customer
+      description: Adds a new customer to the database
       parameters:
-        - in: "body"
-          name: "customer"
-          description: "The customer to add"
+        - name: body
+          in: body
+          description: The customer object to add
           required: true
           schema:
-            $ref: "#/definitions/Customer"
+            $ref: '#/definitions/NewCustomer'
       responses:
         201:
-          description: "The newly added customer"
+          description: The newly added customer
+          schema:
+            $ref: '#/definitions/Customer'
+        500:
+          description: Internal server error
+
+
