@@ -56,8 +56,9 @@ Run the following command in the server/ folder to start your Express.js server:
 
 Below are some key API endpoints for the shopping API:
 
-### Products
+## API Endpoints
 
+### Products
 - **GET** `/api/v1/products`: Retrieve all products.
 - **GET** `/api/v1/product/{PID}`: Retrieve a product by its ID.
 - **POST** `/api/v1/addProduct`: Add a new product.
@@ -65,9 +66,11 @@ Below are some key API endpoints for the shopping API:
 - **DELETE** `/api/v1/deleteProduct/{PID}`: Delete a product by its ID.
 
 ### Customers
-
 - **GET** `/api/v1/getCustomers`: Retrieve all customers.
+- **GET** `/api/v1/customer/{CID}`: Retrieve a customer by its ID.
 - **POST** `/api/v1/addCustomer`: Add a new customer.
+- **PATCH** `/api/v1/updateCustomer/{CID}`: Update a customer by its ID.
+- **DELETE** `/api/v1/deleteCustomer/{CID}`: Delete a customer by its ID.
 
 ## Database Configuration
 
