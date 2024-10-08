@@ -12,7 +12,7 @@ mysql.createConnection({
     connection = p;
 }).catch(err => console.error(err))
 
-// <------------------------------------------- P R O D U C T S ------------------------------------------->
+// <-------------- P R O D U C T S -------------->
 
 export async function getProducts() {
     try {
@@ -51,7 +51,7 @@ export async function updateProduct(newQty, PID) {
     return updatedProduct;
 }
 
-// <------------------------------------------- C U S T O M E R S ------------------------------------------->
+// <--------------- C U S T O M E R S --------------->
 
 export async function getCustomers() {
     try {
@@ -83,7 +83,7 @@ export async function addCustomer(Name, Email, PhoneNumber, Password, Address) {
 // <------------------------- AFTER BUYING --------------------------->
 
 export async function buyProduct(Qty, PID) {
-    let a = Math.floor(Math.random() * 96 + 1);
+    let a = Math.floor(Math.random() * 1000000 + 1);
     const [currQuantity] = await connection.execute(`Select Qty from Products where PID = ?`, [PID]);
 
     const currQuantityFirstObj = currQuantity[0].Qty;

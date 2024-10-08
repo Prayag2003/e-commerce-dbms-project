@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(express.json());
 
-// <------------------------------------------- P R O D U C T S ------------------------------------------->
+// <------------------ P R O D U C T S ------------------>
 
 app.get("/products", async (req, res) => {
     try {
@@ -66,7 +66,7 @@ app.delete("/deleteProduct/:PID", async (req, res) => {
 })
 
 
-// <------------------------------------------- C U S T O M E R S ------------------------------------------->
+// <---------------------  C U S T O M E R S ---------------------->
 
 
 app.get("/getCustomers", async (req, res) => {
@@ -91,7 +91,7 @@ app.post("/addCustomer", async (req, res) => {
     }
 })
 
-// <------------------------------- ON BUYING A PRODUCT ------------------------------->
+// <---------- ON BUYING A PRODUCT ---------->
 app.get("/buyProduct/:PID", async (req, res) => {
     const PID = req.params.PID;
     try {
@@ -103,7 +103,7 @@ app.get("/buyProduct/:PID", async (req, res) => {
 });
 
 
-// ----------------------------------- C A R T    T A B L E -------------------------------
+// <------------ C A R T    T A B L E -------->
 app.get("/getCartItems", async (req, res) => {
     try {
         const getCart = await getCartItems();
